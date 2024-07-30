@@ -103,7 +103,7 @@ else:
     )
 
     # Sidebar menu
-    st.sidebar.image('D:/Rasya Rachman hakim/yolov8-streamlit-detection-tracking-master/images/icon.png', width=200)
+    st.sidebar.image('images/icon.png', width=200)
     st.sidebar.header("Navigation")
     menu = st.sidebar.selectbox("Select a page:", ["Home", "Detection", "Detection History"])
 
