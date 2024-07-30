@@ -7,3 +7,4 @@ numpy==1.26.4
 streamlit-webrtc==0.47.6
 ultralytics==8.2.16
 mysql-connector-python==9.0.0
+cv2
