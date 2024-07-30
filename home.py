@@ -52,12 +52,14 @@ def save_detection(image):
         st.error(f"An error occurred: {e}")
 
 
-# Function to load detection history from database
 def load_detection_history():
     try:
+        st.write("Loading detection history...")
         c = conn.cursor()
         c.execute("SELECT id, timestamp, image FROM detections ORDER BY timestamp DESC")
-        return c.fetchall()
+        history = c.fetchall()
+        st.write(f"Loaded {len(history)} records from the database.")
+        return history
     except sqlite3.Error as e:
         st.error(f"Failed to load detection history: {e}")
         return []
