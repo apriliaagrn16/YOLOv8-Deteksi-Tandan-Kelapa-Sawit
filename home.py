@@ -40,12 +40,13 @@ def save_detection(image):
 # Function to load detection history from database
 def load_detection_history():
     try:
-        with conn.cursor() as c:
-            c.execute("SELECT id, timestamp, image FROM detections ORDER BY timestamp DESC")
-            return c.fetchall()
+        c = conn.cursor()
+        c.execute("SELECT id, timestamp, image FROM detections ORDER BY timestamp DESC")
+        return c.fetchall()
     except sqlite3.Error as e:
         st.error(f"Failed to load detection history: {e}")
         return []
+
 
 # Function to delete all detection history
 def delete_all_detections():
