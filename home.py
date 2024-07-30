@@ -232,7 +232,9 @@ else:
                         
                         # Save detection result to database
                         try:
+                            st.write("Saving detection result to database...")
                             save_detection(detected_image)
+                            st.write("Detection result saved.")
                         except Exception as ex:
                             st.error("Failed to save detection result.")
                             st.error(ex)
