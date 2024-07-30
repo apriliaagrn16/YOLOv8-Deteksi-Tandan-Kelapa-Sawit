@@ -28,14 +28,29 @@ conn.commit()
 def check_login(username, password):
     return username == "admin" and password == "123"
 
-# Function to save detection result to database
 def save_detection(image):
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    img_byte_arr = io.BytesIO()
-    image.save(img_byte_arr, format='PNG')
-    img_byte_arr = img_byte_arr.getvalue()
-    conn.execute("INSERT INTO detections (timestamp, image) VALUES (?, ?)", (timestamp, img_byte_arr))
-    conn.commit()
+    try:
+        st.write("Starting to save detection")
+
+        if not isinstance(image, PIL.Image.Image):
+            raise ValueError("The provided image is not a valid PIL Image.")
+
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        st.write("Timestamp created:", timestamp)
+
+        img_byte_arr = io.BytesIO()
+        image.save(img_byte_arr, format='PNG')
+        img_byte_arr = img_byte_arr.getvalue()
+        st.write("Image converted to byte array")
+
+        conn.execute("INSERT INTO detections (timestamp, image) VALUES (?, ?)", (timestamp, img_byte_arr))
+        conn.commit()
+        st.success("Detection saved successfully.")
+    except sqlite3.Error as e:
+        st.error(f"Failed to save detection to the database: {e}")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+
 
 # Function to load detection history from database
 def load_detection_history():
