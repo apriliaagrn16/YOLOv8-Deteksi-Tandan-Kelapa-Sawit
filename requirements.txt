@@ -1,7 +1,6 @@
 pathlib
 Pillow==10.2.0
 streamlit==1.32.2
-opencv-python==4.9.0.80
 av==11.0.0
 numpy==1.26.4
 streamlit-webrtc==0.47.6
