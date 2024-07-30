@@ -34,7 +34,8 @@ def save_detection(image):
 
         if not isinstance(image, PIL.Image.Image):
             raise ValueError("The provided image is not a valid PIL Image.")
-
+          
+        timezone = pytz.timezone('Asia/Jakarta')
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         st.write("Timestamp created:", timestamp)
 
